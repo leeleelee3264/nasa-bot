@@ -1,4 +1,4 @@
-package com.leeleelee3264.todayearth.hello;
+package com.leeleelee3264.earthtoday.hello;
 
 import lombok.Getter;
 import lombok.Setter;

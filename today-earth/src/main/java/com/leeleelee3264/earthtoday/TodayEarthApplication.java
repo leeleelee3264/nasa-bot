@@ -1,6 +1,6 @@
-package com.leeleelee3264.todayearth;
+package com.leeleelee3264.earthtoday;
 
-import com.leeleelee3264.todayearth.hello.GreetingClient;
+import com.leeleelee3264.earthtoday.hello.GreetingClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;

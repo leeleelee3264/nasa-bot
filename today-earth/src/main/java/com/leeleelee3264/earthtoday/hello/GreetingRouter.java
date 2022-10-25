@@ -1,4 +1,4 @@
-package com.leeleelee3264.todayearth.hello;
+package com.leeleelee3264.earthtoday.hello;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
