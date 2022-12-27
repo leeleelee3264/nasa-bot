@@ -6,6 +6,7 @@ import lombok.Getter;
 public class Meta {
 
     static final String IMAGE_PREFIX = "epic_1b_";
+    static final String IMAGE_EXTENSION = ".png";
 
     private String identifier;
     private String imageName;
@@ -16,7 +17,7 @@ public class Meta {
     }
 
     public Meta fromAPI(String identifier) {
-        String imageName = IMAGE_PREFIX + identifier;
+        String imageName = IMAGE_PREFIX + identifier + IMAGE_EXTENSION;
         return new Meta(identifier, imageName);
     }
 }

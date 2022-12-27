@@ -13,6 +13,8 @@ public class TodayEarthApplication {
 
         GreetingClient greetingClient = context.getBean(GreetingClient.class);
         System.out.println(">> message = " + greetingClient.getMessage().block());
+
+        // Test cal
     }
 
 }
