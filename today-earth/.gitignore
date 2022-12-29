@@ -36,3 +36,5 @@ out/
 ### VS Code ###
 .vscode/
 src/test/sample_request/
+
+src/main/resources/application-prod.properties
