@@ -1,5 +1,6 @@
 package com.leeleelee3264.earthtoday;
 
+import com.leeleelee3264.earthtoday.nasa.client.MetaClient;
 import com.leeleelee3264.earthtoday.nasa.service.EarthService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +20,11 @@ public class TodayEarthApplication {
 
         LocalDate date = LocalDate.now().minusDays(4);
 
+        MetaClient client = context.getBean(MetaClient.class);
         EarthService service = context.getBean(EarthService.class);
 
-        service.saveImages(date);
+        service.tweetMsg();
+//        service.saveImages(date);
         log.info("finish");
 
     }

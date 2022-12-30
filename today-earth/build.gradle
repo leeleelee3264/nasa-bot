@@ -26,6 +26,9 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
+
+    implementation group: 'org.twitter4j', name: 'twitter4j-core', version: '4.1.2'
+
 }
 
 tasks.named('test') {

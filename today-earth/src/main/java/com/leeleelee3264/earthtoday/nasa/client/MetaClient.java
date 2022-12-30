@@ -24,13 +24,13 @@ public class MetaClient {
 
     private final String subUrl = "/EPIC/api/natural/date/";
 
-    private final RestTemplateBuilder restTemplateBuilder;
+    private RestTemplateBuilder restTemplateBuilder;
 
     private final HttpHeaders headers;
 
 
-    public MetaClient(RestTemplateBuilder restTemplateBuilder) {
-        this.restTemplateBuilder = restTemplateBuilder;
+    public MetaClient() {
+        this.restTemplateBuilder = new RestTemplateBuilder();
 
         this.headers = new HttpHeaders();
         this.headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
