@@ -1,35 +1,28 @@
 package com.leeleelee3264.earthtoday;
 
-import com.leeleelee3264.earthtoday.hello.GreetingClient;
 import com.leeleelee3264.earthtoday.nasa.archive.ArchiveClient;
-import com.leeleelee3264.earthtoday.nasa.meta.Meta;
-import com.leeleelee3264.earthtoday.nasa.meta.MetaClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.List;
 
 @SpringBootApplication
 public class TodayEarthApplication {
 
     private static final Logger log = LoggerFactory.getLogger(TodayEarthApplication.class);
 
-    @Value("${earth.image.directory}")
-    private static String earthImageDirectory;
+    private static String earthImageDirectory = "/Users/leelee/study/earth-resources";
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(TodayEarthApplication.class, args);
 
-        LocalDate date = LocalDate.now().minusDays(3);
+        LocalDate date = LocalDate.now().minusDays(4);
         String dirName = earthImageDirectory + "/" + date.toString();
 
         try {
@@ -53,8 +46,15 @@ public class TodayEarthApplication {
         String t = "https://api.nasa.gov/EPIC/archive/natural/2022/10/22/png/epic_1b_20221022004554.png?api_key=aumlN0C5xNVPnqlSHE3PVhHxEzrfm53Entwl6yhi";
 
         ArchiveClient archiveClient = context.getBean(ArchiveClient.class);
-        archiveClient.get(date, t);
+        byte[] fByte = archiveClient.get(date, t);
 
+        try {
+            Files.write(Paths.get(dirName + "/test.png"), fByte);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        log.info("finish");
 
     }
 
