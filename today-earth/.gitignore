@@ -38,3 +38,5 @@ out/
 src/test/sample_request/
 
 src/main/resources/application-prod.properties
+
+../.DS_Store

@@ -23,7 +23,7 @@ public class TodayEarthApplication {
         MetaClient client = context.getBean(MetaClient.class);
         EarthService service = context.getBean(EarthService.class);
 
-        service.tweetMsg();
+//        service.tweetMsg();
 //        service.saveImages(date);
         log.info("finish");
 

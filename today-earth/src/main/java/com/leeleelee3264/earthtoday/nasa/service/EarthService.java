@@ -1,17 +1,12 @@
 package com.leeleelee3264.earthtoday.nasa.service;
 
-import com.leeleelee3264.earthtoday.TodayEarthApplication;
 import com.leeleelee3264.earthtoday.nasa.client.ArchiveClient;
 import com.leeleelee3264.earthtoday.nasa.client.MetaClient;
-import com.leeleelee3264.earthtoday.nasa.client.TwitterClient;
 import com.leeleelee3264.earthtoday.nasa.dto.Meta;
 import com.leeleelee3264.earthtoday.util.LoggingUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
-import twitter4j.TwitterException;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -27,12 +22,11 @@ public class EarthService {
 
     private MetaClient metaClient;
     private ArchiveClient archiveClient;
-    private TwitterClient twitterClient;
 
-    public  EarthService(MetaClient metaClient, ArchiveClient archiveClient, TwitterClient twitterClient) {
+
+    public  EarthService(MetaClient metaClient, ArchiveClient archiveClient) {
         this.metaClient = metaClient;
         this.archiveClient = archiveClient;
-        this.twitterClient = twitterClient;
     }
 
 //    public void tweetGif() {
@@ -40,11 +34,7 @@ public class EarthService {
 //    }
 
     public void tweetMsg() {
-        try {
-            this.twitterClient.tweet("Hello world!");
-        } catch (TwitterException e) {
-            LoggingUtils.error(e);
-        }
+
     }
 
 
