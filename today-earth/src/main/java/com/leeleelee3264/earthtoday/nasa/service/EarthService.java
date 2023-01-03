@@ -2,6 +2,7 @@ package com.leeleelee3264.earthtoday.nasa.service;
 
 import com.leeleelee3264.earthtoday.nasa.client.ArchiveClient;
 import com.leeleelee3264.earthtoday.nasa.client.MetaClient;
+import com.leeleelee3264.earthtoday.nasa.client.TwitterClient;
 import com.leeleelee3264.earthtoday.nasa.dto.Meta;
 import com.leeleelee3264.earthtoday.util.LoggingUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,11 +23,13 @@ public class EarthService {
 
     private MetaClient metaClient;
     private ArchiveClient archiveClient;
+    private TwitterClient twitterClient;
 
 
-    public  EarthService(MetaClient metaClient, ArchiveClient archiveClient) {
+    public  EarthService(MetaClient metaClient, ArchiveClient archiveClient, TwitterClient twitterClient) {
         this.metaClient = metaClient;
         this.archiveClient = archiveClient;
+        this.twitterClient = twitterClient;
     }
 
 //    public void tweetGif() {
@@ -34,7 +37,7 @@ public class EarthService {
 //    }
 
     public void tweetMsg() {
-
+        this.twitterClient.tweets("Hello World in method");
     }
 
 
