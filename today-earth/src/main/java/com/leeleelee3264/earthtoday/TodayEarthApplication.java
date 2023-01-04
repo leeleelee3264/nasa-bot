@@ -24,8 +24,7 @@ public class TodayEarthApplication {
 
         EarthService service = context.getBean(EarthService.class);
 
-        service.tweetMsg();
-//        service.saveImages(date);
+        service.tweetGif();
         log.info("finish");
 
 

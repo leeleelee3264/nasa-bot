@@ -32,9 +32,9 @@ public class EarthService {
         this.twitterClient = twitterClient;
     }
 
-//    public void tweetGif() {
-//
-//    }
+    public void tweetGif() {
+        this.twitterClient.tweets("Hello,", this.imageDirectory + "/2022-12-26/epic_1b_20221226005515.png");
+    }
 
     public void tweetMsg() {
         this.twitterClient.tweets("Hello World in method");
