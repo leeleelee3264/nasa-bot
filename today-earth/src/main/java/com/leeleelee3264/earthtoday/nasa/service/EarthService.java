@@ -33,7 +33,7 @@ public class EarthService {
     }
 
     public void tweetGif() {
-        this.twitterClient.tweets("Hello,", this.imageDirectory + "/2022-12-26/epic_1b_20221226005515.png");
+        this.twitterClient.tweets("Hello,", this.imageDirectory + "/2022-12-26/second_small.gif");
     }
 
     public void tweetMsg() {
