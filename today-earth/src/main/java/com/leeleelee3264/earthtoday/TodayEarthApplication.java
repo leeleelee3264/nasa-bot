@@ -23,8 +23,8 @@ public class TodayEarthApplication {
         LocalDate date = LocalDate.now().minusDays(4);
 
         EarthService service = context.getBean(EarthService.class);
-
-        service.tweetGif();
+//
+//        service.tweetGif();
         log.info("finish");
 
 

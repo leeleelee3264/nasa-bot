@@ -42,7 +42,7 @@ public class TwitterClient {
                 .build();
     }
 
-    public void tweets(String message) {
+    public void tweet(String message) {
         try {
             this.twitterInstance.v1().tweets().updateStatus(message);
         } catch (TwitterException e) {
@@ -50,24 +50,17 @@ public class TwitterClient {
         }
     }
 
-    /**
-     * 이미지나 GIF 아무튼 멀티미디어를 이용해서 트윗을 하는 것을 별도의 이름의 메소드를 만들지 않고 오버라이딩을 하자.
-     * TODO: 그런데 이제 이렇게 하면.. 오버로딩을 할 수 없다. 인자를 FileType으로 바꿔야할듯
-     * @param message
-     * @param filePath
-     */
-    public void tweets(String filePath) {
-        File imageFile = new File(filePath);
+    public void tweet_media(File file) {
 
         try {
             // Get empty StatusUpdate object to get new StatusUpdate object with media id.
             StatusUpdate statusUpdate = StatusUpdate.of("");
             UploadedMedia media = null;
 
-            if (imageFile.length() > 1_000_000) {
-                media = this.twitterInstance.v1().tweets().uploadMediaChunked(imageFile.getName(), new BufferedInputStream(new FileInputStream(imageFile)));
+            if (file.length() > 1_000_000) {
+                media = this.twitterInstance.v1().tweets().uploadMediaChunked(file.getName(), new BufferedInputStream(new FileInputStream(file)));
             } else {
-                media = this.twitterInstance.v1().tweets().uploadMedia(imageFile);
+                media = this.twitterInstance.v1().tweets().uploadMedia(file);
             }
 
             if (media != null) {

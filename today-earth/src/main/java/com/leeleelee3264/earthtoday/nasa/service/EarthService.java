@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -21,6 +23,9 @@ public class EarthService {
     @Value("${earth.image.directory}")
     private String imageDirectory;
 
+    @Value("${earth.image.gif}")
+    private String gifName;
+
     private MetaClient metaClient;
     private ArchiveClient archiveClient;
     private TwitterClient twitterClient;
@@ -32,12 +37,15 @@ public class EarthService {
         this.twitterClient = twitterClient;
     }
 
-    public void tweetGif() {
-        this.twitterClient.tweets("Hello,", this.imageDirectory + "/2022-12-26/second_small.gif");
+    public void tweetGif(LocalDate date) {
+        String fullGifName = this.imageDirectory + "/" + date.toString() + gifName;
+        File gifFile = new File(fullGifName);
+
+        this.twitterClient.tweet_media(gifFile);
     }
 
     public void tweetMsg() {
-        this.twitterClient.tweets("Hello World in method");
+        this.twitterClient.tweet("Hello World in method");
     }
 
 
