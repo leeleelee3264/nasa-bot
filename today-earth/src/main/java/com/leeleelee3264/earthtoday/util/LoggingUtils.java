@@ -17,6 +17,10 @@ public class LoggingUtils {
         log.error(message, stackTraceElement[0]);
     }
 
+    public static void error(String customMessage) {
+        log.error(customMessage);
+    }
+
     public static void error(Exception exception, String customMessage) {
         String message = customMessage + "\n" + getExceptionMessage(exception.getMessage());
         StackTraceElement[] stackTraceElement = exception.getStackTrace();

@@ -1,16 +1,17 @@
 package com.leeleelee3264.earthtoday.nasa.service;
 
+import com.leeleelee3264.earthtoday.exception.ShellException;
 import com.leeleelee3264.earthtoday.nasa.client.ArchiveClient;
 import com.leeleelee3264.earthtoday.nasa.client.MetaClient;
 import com.leeleelee3264.earthtoday.nasa.client.TwitterClient;
 import com.leeleelee3264.earthtoday.nasa.dto.Meta;
+import com.leeleelee3264.earthtoday.nasa.shell.EarthGifGenerator;
 import com.leeleelee3264.earthtoday.util.LoggingUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -30,24 +31,24 @@ public class EarthService {
     private ArchiveClient archiveClient;
     private TwitterClient twitterClient;
 
-
     public  EarthService(MetaClient metaClient, ArchiveClient archiveClient, TwitterClient twitterClient) {
         this.metaClient = metaClient;
         this.archiveClient = archiveClient;
         this.twitterClient = twitterClient;
     }
 
-    public void tweetGif(LocalDate date) {
-        String fullGifName = this.imageDirectory + "/" + date.toString() + gifName;
+    public void tweetEarth(LocalDate date) {
+
+        String notification = "오늘의 지구는 어떤 모양일까? ";
+        notification += "\uD83C\uDF0E";
+
+        this.twitterClient.tweet(notification);
+
+        String fullGifName = this.imageDirectory + "/" + date.toString() + "/" + gifName;
         File gifFile = new File(fullGifName);
 
         this.twitterClient.tweet_media(gifFile);
     }
-
-    public void tweetMsg() {
-        this.twitterClient.tweet("Hello World in method");
-    }
-
 
     public void saveImages(LocalDate date) {
 
@@ -67,8 +68,9 @@ public class EarthService {
                 this.saveImage(dirName, meta.getImagePath(), fByte);
             }
 
-            LoggingUtils.info("Successfully download images");
-        } catch (HttpClientErrorException e) {
+            EarthGifGenerator.generate(dirName, gifName);
+            LoggingUtils.info("Successfully download and generate images");
+        } catch (HttpClientErrorException | ShellException e) {
             LoggingUtils.error(e);
         }
     }
