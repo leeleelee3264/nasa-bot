@@ -25,8 +25,9 @@ public class TodayEarthApplication {
 //
 //        service.saveImages(date);
 
-        EarthGifGenerator.generate("/Users/seungmin/study/earth-resources/2022-12-26", "earth.gif");
+//        EarthGifGenerator.generate("/Users/seungmin/study/earth-resources/2022-12-26", "earth.gif");
         log.info("finish");
+        log.info("My name is: {}", "Jamie");
 
     }
 

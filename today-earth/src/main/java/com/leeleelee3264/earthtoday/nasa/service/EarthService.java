@@ -81,7 +81,7 @@ public class EarthService {
         try {
             Files.write(Paths.get(fullName), fByte);
         } catch (IOException e) {
-            LoggingUtils.error(e, "Failed to download Image: " + fullName);
+            LoggingUtils.error(e, "Failed to download Image: {}", fullName);
         }
     }
 
