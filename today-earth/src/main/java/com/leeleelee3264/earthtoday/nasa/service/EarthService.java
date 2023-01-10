@@ -15,7 +15,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -38,6 +40,7 @@ public class EarthService {
     }
 
     public void tweetEarth(LocalDate date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
         String notification = "오늘의 지구는 어떤 모양일까? ";
         notification += "\uD83C\uDF0E";

@@ -24,7 +24,7 @@ public class EarthGifGenerator {
         String fullFileName = directory + "/" + fileName;
 
         String convertCommand = "convert -delay 60 " + directory + "/*.png " + fullFileName;
-        String gifsicleCommand = "gifsicle -O3 --colors 128 --lossy -o " + fullFileName + " " + fullFileName;
+        String gifsicleCommand = "gifsicle -O3 --colors 128 --lossy=80 -o " + fullFileName + " " + fullFileName;
 
         try {
             Process convertProcess = Runtime.getRuntime().exec(convertCommand);

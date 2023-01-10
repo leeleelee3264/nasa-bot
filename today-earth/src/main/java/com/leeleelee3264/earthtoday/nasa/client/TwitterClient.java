@@ -55,20 +55,14 @@ public class TwitterClient {
         try {
             // Get empty StatusUpdate object to get new StatusUpdate object with media id.
             StatusUpdate statusUpdate = StatusUpdate.of("");
-            UploadedMedia media = null;
-
-            if (file.length() > 1_000_000) {
-                media = this.twitterInstance.v1().tweets().uploadMediaChunked(file.getName(), new BufferedInputStream(new FileInputStream(file)));
-            } else {
-                media = this.twitterInstance.v1().tweets().uploadMedia(file);
-            }
+            UploadedMedia media = this.twitterInstance.v1().tweets().uploadMedia(file);
 
             if (media != null) {
                 StatusUpdate update2 = statusUpdate.mediaIds(media.getMediaId());
                 this.twitterInstance.v1().tweets().updateStatus(update2);
             }
 
-        } catch (TwitterException | FileNotFoundException e) {
+        } catch (TwitterException e) {
             LoggingUtils.error(e);
         }
     }
