@@ -16,7 +16,7 @@ public class EarthTask {
         this.earthService = earthService;
     }
 
-    @Scheduled(cron = "0 13 * * *")
+    @Scheduled(cron = "0 0 13 * * *")
     public void triggerEarthBot() {
         // 당일이나 전날 데이터를 조회하면 NASA에서 자료를 올려주지 않은 경우가 많아서 2일 정도 전의 데이터를 조회한다.
         LocalDate today = LocalDate.now();
