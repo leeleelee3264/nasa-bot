@@ -45,6 +45,7 @@ public class TwitterClient {
     public void tweet(String message) {
         try {
             this.twitterInstance.v1().tweets().updateStatus(message);
+            LoggingUtils.info("Successfully tweet the message: {}", message);
         } catch (TwitterException e) {
             LoggingUtils.error(e);
         }
@@ -62,6 +63,7 @@ public class TwitterClient {
                 this.twitterInstance.v1().tweets().updateStatus(update2);
             }
 
+            LoggingUtils.info("Successfully upload media: {}", file.getAbsolutePath());
         } catch (TwitterException e) {
             LoggingUtils.error(e);
         }

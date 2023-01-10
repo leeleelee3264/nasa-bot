@@ -17,7 +17,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -29,9 +28,9 @@ public class EarthService {
     @Value("${earth.image.gif}")
     private String gifName;
 
-    private MetaClient metaClient;
-    private ArchiveClient archiveClient;
-    private TwitterClient twitterClient;
+    private final MetaClient metaClient;
+    private final ArchiveClient archiveClient;
+    private final TwitterClient twitterClient;
 
     public  EarthService(MetaClient metaClient, ArchiveClient archiveClient, TwitterClient twitterClient) {
         this.metaClient = metaClient;
