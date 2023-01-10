@@ -41,10 +41,12 @@ public class EarthGifGenerator {
             // Log shell command error if any
             while (convertStdError.readLine() != null) {
                 LoggingUtils.error("convert Command Error: {}", convertStdError.readLine());
+                throw new ShellException.FailedExecution(convertCommand);
             }
 
             while (gifsicleStdError.readLine() != null) {
                 LoggingUtils.error("gifsicle Command Error: {}", gifsicleStdError.readLine());
+                throw new ShellException.FailedExecution(gifsicleCommand);
             }
 
         } catch (IOException | InterruptedException e) {
