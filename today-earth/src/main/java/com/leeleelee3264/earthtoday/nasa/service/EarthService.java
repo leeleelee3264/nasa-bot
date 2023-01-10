@@ -38,15 +38,16 @@ public class EarthService {
         this.twitterClient = twitterClient;
     }
 
-    public void tweetEarth(LocalDate date) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+    public void tweetEarth(LocalDate targetDate) {
+        LocalDate today = LocalDate.now();
 
-        String notification = "오늘의 지구는 어떤 모양일까? ";
+        String notification = today.getYear() + "년 " + today.getMonthValue() + "월 " + today.getDayOfMonth() + "일 ";
+        notification += "오늘의 지구는 어떤 모양일까? ";
         notification += "\uD83C\uDF0E";
 
         this.twitterClient.tweet(notification);
 
-        String fullGifName = this.imageDirectory + "/" + date.toString() + "/" + gifName;
+        String fullGifName = this.imageDirectory + "/" + targetDate.toString() + "/" + gifName;
         File gifFile = new File(fullGifName);
 
         this.twitterClient.tweet_media(gifFile);
