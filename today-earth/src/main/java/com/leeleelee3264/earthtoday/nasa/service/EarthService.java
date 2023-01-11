@@ -1,5 +1,6 @@
 package com.leeleelee3264.earthtoday.nasa.service;
 
+import com.leeleelee3264.earthtoday.exception.BotException;
 import com.leeleelee3264.earthtoday.exception.ShellException;
 import com.leeleelee3264.earthtoday.nasa.client.ArchiveClient;
 import com.leeleelee3264.earthtoday.nasa.client.MetaClient;
@@ -65,15 +66,23 @@ public class EarthService {
 
         try {
             List<Meta> nasaPaths = this.metaClient.get(date);
+
+            if (nasaPaths.isEmpty()) {
+                throw new BotException.FailedFetchResources("There is no meta resource today: " + date.toString());
+            }
+
             for (Meta meta: nasaPaths) {
                 byte[] fByte = this.archiveClient.get(date, meta.getImagePath());
                 this.saveImage(dirName, meta.getImagePath(), fByte);
             }
 
             EarthGifGenerator.generate(dirName, gifName);
+            // TODO: 지우기
             LoggingUtils.info("Successfully download and generate images");
+
         } catch (HttpClientErrorException | ShellException e) {
             LoggingUtils.error(e);
+            throw new BotException.FailedFetchResources(e.getMessage());
         }
     }
 
